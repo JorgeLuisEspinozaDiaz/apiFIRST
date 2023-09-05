@@ -11,6 +11,10 @@ const db = new Sequelize(
     dialect: process.env.DIALECT,
   }
 );
+console.log(process.env.DATABASE);
+console.log(process.env.HOST);
+console.log(process.env.DIALECT);
+console.log(process.env.USERNAMEssss);
 console.log(process.env.PASSWORD);
 
 module.exports = db;
