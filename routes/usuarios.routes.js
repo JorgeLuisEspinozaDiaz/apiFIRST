@@ -20,20 +20,25 @@ router.post("/", async (req, res) => {
   const { email, name } = req.body;
   if (!email || !name) {
     return res.status(400).json({
-      error: "uno o mas campos vacios",
+      error: "Uno o más campos vacíos",
     });
   }
 
-  const newUser = {
-    id: uuid.v4(),
-    email: email,
-    name: name,
-  };
+  try {
+    const user = await User.create({
+      name: name,
+      email: email,
+    });
 
-  const user = await User.create(newUser);
-  res.json({
-    user,
-  });
+    res.json({
+      user,
+    });
+  } catch (error) {
+    console.error("Error al crear un usuario:", error);
+    res.status(500).json({
+      error: "Error interno del servidor al crear un usuario",
+    });
+  }
 });
 
 module.exports = router;
