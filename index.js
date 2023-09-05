@@ -22,6 +22,6 @@ app.use(express.json()); //recibir informacion
 app.use(cors()); // habilitar  otras aplicaiones para realizar solicitudes a nuestra app
 app.use("/usuario", usuarios);
 
-app.listen(port, () => {
-  console.log("servidor arrancando ", port);
+app.listen(process.env.PORT, () => {
+  console.log("servidor arrancando ", process.env.PORT);
 });
